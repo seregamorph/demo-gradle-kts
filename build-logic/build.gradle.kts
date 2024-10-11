@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
     implementation("io.spring.gradle:dependency-management-plugin:1.1.6")
+    implementation("com.autonomousapps:dependency-analysis-gradle-plugin:2.1.4")
 }
 
 gradlePlugin {

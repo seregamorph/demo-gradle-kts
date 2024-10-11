@@ -17,7 +17,7 @@ includeModule(":utilities")
 fun includeModule(name: String) {
     modules.lastOrNull()?.let {
         if (it > name) {
-            throw IllegalArgumentException("Modules must be included in lexicographical order, " +
+            throw IllegalArgumentException("Modules must be included in alphabetical order, " +
                     "\"$it\" should go after \"$name\"")
         }
     }

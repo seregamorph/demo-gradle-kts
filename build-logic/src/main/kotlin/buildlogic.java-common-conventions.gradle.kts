@@ -1,6 +1,7 @@
 plugins {
     java
     id("io.spring.dependency-management")
+    id("buildlogic.dependency-analysis")
 }
 
 repositories {
@@ -20,7 +21,7 @@ testing {
     suites {
         val test by getting(JvmTestSuite::class) {
             // Use JUnit Jupiter test framework
-            useJUnitJupiter("5.10.3")
+            useJUnitJupiter("5.9.3")
         }
     }
 }
