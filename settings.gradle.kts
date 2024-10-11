@@ -1,5 +1,3 @@
-import java.util.TreeSet
-
 pluginManagement {
     includeBuild("build-logic")
 }
@@ -9,7 +7,7 @@ plugins {
     id("com.example.simple-settings-plugin")
 }
 
-val modules = TreeSet<String>()
+val modules = sortedSetOf<String>()
 rootProject.name = "demo-gradle-kts"
 
 includeModule(":app")
@@ -20,9 +18,16 @@ fun includeModule(name: String) {
     modules.lastOrNull()?.let {
         if (it > name) {
             throw IllegalArgumentException("Modules must be included in lexicographical order, " +
-                    "$it should go after $name")
+                    "\"$it\" should go after \"$name\"")
         }
     }
     modules.add(name)
     include(name)
+    val module = name.substring(name.lastIndexOf(':') + 1)
+    with(project(name)) {
+        buildFileName = "$module.gradle.kts"
+        if (!buildFile.exists()) {
+            throw GradleException("Module \"$name\" does not have a build file. Expected file name is $buildFile")
+        }
+    }
 }
