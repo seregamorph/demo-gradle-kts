@@ -1,14 +1,18 @@
 plugins {
     java
+    id("io.spring.dependency-management")
 }
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    constraints {
-        implementation("org.apache.commons:commons-text:1.12.0")
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:3.1.1")
+    }
+    dependencies {
+        dependency("org.apache.commons:commons-text:1.12.0")
     }
 }
 
